@@ -18,9 +18,7 @@ day = str(date.today().day+1)
 primetime = "7:00 AM"
 time = "6:00 PM"
 #print(day)
-myxpath = '//*[@id="main"]/div[6]/div/div[1]/div[2]/div[2]/div[4]/div/div/div[2]'
-numPlayers = ["0","1","2"]
-wlkStart = ""
+#myxpath = '//*[@id="main"]/div[6]/div/div[1]/div[2]/div[2]/div[4]/div/div/div[2]'
 
 #open browser
 browser = webdriver.Chrome(executable_path='/Users/Brett/Developer/chromedriver')
