@@ -14,9 +14,9 @@ from datetime import date
 #local variables
 user = 'dacoolestnerd'
 password = 'Bsece123?'
-day = str(date.today().day+1)
+day = str(date.today().day+2) #book three days in advance
 primetime = "7:00 AM"
-time = "6:00 PM"
+time = "2:40 PM"
 #print(day)
 #myxpath = '//*[@id="main"]/div[6]/div/div[1]/div[2]/div[2]/div[4]/div/div/div[2]'
 
@@ -42,16 +42,19 @@ browser.find_element(By.PARTIAL_LINK_TEXT,"Make").click()
 
 
 #book earliest tee time available 
+#xavailable = "/html/body/div[3]/div/div[3]/div[6]/div[4]/div[1]/div/div/table/tbody/tr[4]/td[@title='Tee Times Available']"
+#element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,day))#date is available
+#                     & EC.text_to_be_present_in_element((By.XPATH,xavailable,"Tee Times Available")))#
 element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,day)))
 browser.find_element(By.LINK_TEXT, day).click()
 browser.find_element(By.LINK_TEXT, time).click()
 
 #set the player list
 # 12 | click | css=li:nth-child(4) > div | 
-browser.find_element(By.CSS_SELECTOR, "li:nth-child(4) > div").click()
+browser.find_element(By.CSS_SELECTOR, "li:nth-child(4) > div").click() #main user
 # 13 | click | xpath=//div[4]/div/div/div[2]/span | 
-browser.find_element(By.XPATH, "//div[4]/div/div/div[2]/span").click()
-browser.find_element(By.XPATH, "//div[4]/div/div/div[2]/span").click()
+browser.find_element(By.XPATH, "//div[4]/div/div/div[2]/span").click() #TBD
+browser.find_element(By.XPATH, "//div[4]/div/div/div[2]/span").click() #TBD
 
 #set transportation method
 browser.find_element(By.CSS_SELECTOR, "#slot_player_row_0 .transport_type").click()
@@ -59,7 +62,7 @@ dropdown = browser.find_element(By.CSS_SELECTOR, "#slot_player_row_0 .transport_
 dropdown.find_element(By.XPATH, "//option[. = 'WLK']").click()
 
 #submit tee time
-#browser.find_element(By.LINK_TEXT,"Submit Request").click()
+browser.find_element(By.LINK_TEXT,"Submit Request").click()
 
 #close browser
 #browser.close()
