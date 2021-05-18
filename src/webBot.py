@@ -16,7 +16,9 @@ user = 'dacoolestnerd'
 password = 'Bsece123?'
 day = str(date.today().day+2) #book three days in advance
 primetime = "7:00 AM"
-time = "2:40 PM"
+time = primetime
+teeQueue = True
+
 #print(day)
 #myxpath = '//*[@id="main"]/div[6]/div/div[1]/div[2]/div[2]/div[4]/div/div/div[2]'
 
@@ -33,10 +35,12 @@ browser.find_element(By.ID, "masterPageUC_MPCA166_ctl00_ctl01_txtPassword").send
 
 #navigate to tee sheet
 element = wait.until(EC.element_to_be_clickable((By.ID, "ulMenuItem_100340")))
-browser.find_element(By.ID,"ulMenuItem_100340").click()
+element.click()
+#browser.find_element(By.ID,"ulMenuItem_100340").click()
 browser.find_element(By.LINK_TEXT,"Book Tee Time").click()
 element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Tee Times")))
-browser.find_element(By.LINK_TEXT,"Tee Times").click()
+#browser.find_element(By.LINK_TEXT,"Tee Times").click()
+element.click()
 browser.find_element(By.PARTIAL_LINK_TEXT,"Make").click()
 #browser.find_element(By.CSS_SELECTOR, "ul:nth-child(1) > .topnav_item:nth-child(1) li:nth-child(1) span").click()
 
@@ -46,8 +50,18 @@ browser.find_element(By.PARTIAL_LINK_TEXT,"Make").click()
 #element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,day))#date is available
 #                     & EC.text_to_be_present_in_element((By.XPATH,xavailable,"Tee Times Available")))#
 element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,day)))
-browser.find_element(By.LINK_TEXT, day).click()
-browser.find_element(By.LINK_TEXT, time).click()
+element.click()
+#browser.find_element(By.LINK_TEXT, day).click()
+while teeQueue:
+    elem = browser.find_elements_by_link_text(time)
+    if len(elem)>0:
+        elem[0].click()
+        teeQueue = False
+    else:
+        print("Tee Sheet not available")
+        element = wait.until(EC.element_to_be_clickable((By.LINK_TEXT,day)))
+        element.click()
+        #teeQueue = False 
 
 #set the player list
 # 12 | click | css=li:nth-child(4) > div | 
